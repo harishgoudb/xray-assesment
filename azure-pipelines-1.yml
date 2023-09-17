@@ -45,13 +45,3 @@ steps:
     buildNumber: '$(Build.BuildNumber)'
     allowFailBuild: false
     vuln: false
-- task: JFrogBuildPromotion@1
-  inputs:
-    artifactoryConnection: 'hts2v2artifactory'
-    buildName: '$(Build.DefinitionName)'
-    buildNumber: '$(Build.BuildNumber)'
-    targetRepo: 'ado-generic-promotion'
-    status: 'verify'
-    includeDependencies: false
-    copy: true
-    dryRun: false
