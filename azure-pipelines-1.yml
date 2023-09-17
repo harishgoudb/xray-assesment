@@ -51,7 +51,7 @@ steps:
     buildName: '$(Build.DefinitionName)'
     buildNumber: '$(Build.BuildNumber)'
     targetRepo: 'ado-generic-promotion'
-    status: 'Released'
+    status: 'verify'
     includeDependencies: false
     copy: true
     dryRun: false
