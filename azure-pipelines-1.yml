@@ -12,20 +12,22 @@ pool:
 steps:
 - task: JFrogToolsInstaller@1
   inputs:
-    artifactoryConnection: 'hts2-art'
-    cliInstallationRepo: 'jfrog-cli-v2-new'
+    artifactoryConnection: 'hts2v2artifactory'
+    cliInstallationRepo: 'extractors'
+    installCustomVersion: true
+    cliVersion: '1.44.1'
     installExtractors: true
     extractorsInstallationRepo: 'extractors'
 - task: JFrogMaven@1
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'install'
-    artifactoryResolverService: 'hts2-art'
-    targetResolveReleaseRepo: 'ad-libs-release'
-    targetResolveSnapshotRepo: 'ad-libs-snapshot'
-    artifactoryDeployService: 'hts2-art'
-    targetDeployReleaseRepo: 'ad-libs-release-local'
-    targetDeploySnapshotRepo: 'ad-libs-snapshot-local'
+    artifactoryResolverService: 'hts2v2artifactory'
+    targetResolveReleaseRepo: 'hari-libs-release'
+    targetResolveSnapshotRepo: 'hari-libs-snapshot'
+    artifactoryDeployService: 'hts2v2artifactory'
+    targetDeployReleaseRepo: 'hari-libs-release-local'
+    targetDeploySnapshotRepo: 'hari-libs-snapshot-local'
     collectBuildInfo: true
     buildName: '$(Build.DefinitionName)'
     buildNumber: '$(Build.BuildNumber)'
@@ -33,7 +35,23 @@ steps:
     javaHomeOption: 'JDKVersion'
 - task: JFrogPublishBuildInfo@1
   inputs:
-    artifactoryConnection: 'hts2-art'
+    artifactoryConnection: 'hts2v2artifactory'
     buildName: '$(Build.DefinitionName)'
     buildNumber: '$(Build.BuildNumber)'
-
+- task: JFrogBuildScan@1
+  inputs:
+    xrayConnection: 'hts2-v2-xray'
+    buildName: '$(Build.DefinitionName)'
+    buildNumber: '$(Build.BuildNumber)'
+    allowFailBuild: false
+    vuln: false
+- task: JFrogBuildPromotion@1
+  inputs:
+    artifactoryConnection: 'hts2v2artifactory'
+    buildName: '$(Build.DefinitionName)'
+    buildNumber: '$(Build.BuildNumber)'
+    targetRepo: 'libs-release-local-promotion'
+    status: 'Released'
+    includeDependencies: false
+    copy: true
+    dryRun: false
