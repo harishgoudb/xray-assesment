@@ -13,6 +13,7 @@ steps:
 - task: JFrogToolsInstaller@1
   inputs:
     artifactoryConnection: 'hts2v2artifactory'
+    cliInstallationRepo: 'jfrog-cli-v2-new'
     installCustomVersion: true
     cliVersion: '2.44.1'
     installExtractors: true
