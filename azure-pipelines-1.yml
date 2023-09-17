@@ -23,11 +23,11 @@ steps:
     mavenPomFile: 'pom.xml'
     goals: 'install'
     artifactoryResolverService: 'hts2v2artifactory'
-    targetResolveReleaseRepo: 'hari-libs-release'
-    targetResolveSnapshotRepo: 'hari-libs-snapshot'
+    targetResolveReleaseRepo: 'ado-libs-release'
+    targetResolveSnapshotRepo: 'ado-libs-snapshot'
     artifactoryDeployService: 'hts2v2artifactory'
-    targetDeployReleaseRepo: 'hari-libs-release-local'
-    targetDeploySnapshotRepo: 'hari-libs-snapshot-local'
+    targetDeployReleaseRepo: 'ado-generic-deploy-local-snapshot'
+    targetDeploySnapshotRepo: 'ado-generic-deploy-local-release'
     collectBuildInfo: true
     buildName: '$(Build.DefinitionName)'
     buildNumber: '$(Build.BuildNumber)'
@@ -50,7 +50,7 @@ steps:
     artifactoryConnection: 'hts2v2artifactory'
     buildName: '$(Build.DefinitionName)'
     buildNumber: '$(Build.BuildNumber)'
-    targetRepo: 'libs-release-local-promotion'
+    targetRepo: 'ado-generic-promotion'
     status: 'Released'
     includeDependencies: false
     copy: true
