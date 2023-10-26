@@ -12,20 +12,20 @@ pool:
 steps:
 - task: JFrogToolsInstaller@1
   inputs:
-    artifactoryConnection: 'hts2v2artifactory'
+    artifactoryConnection: 'testado'
     cliInstallationRepo: 'jfrog-cli-v2-new'
     installCustomVersion: true
-    cliVersion: '2.44.1'
+    cliVersion: '2.50.2'
     installExtractors: true
     extractorsInstallationRepo: 'extractors'
 - task: JFrogMaven@1
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'install'
-    artifactoryResolverService: 'hts2v2artifactory'
+    artifactoryResolverService: 'testado'
     targetResolveReleaseRepo: 'ado-libs-release'
     targetResolveSnapshotRepo: 'ado-libs-snapshot'
-    artifactoryDeployService: 'hts2v2artifactory'
+    artifactoryDeployService: 'testado'
     targetDeployReleaseRepo: 'ado-generic-deploy-local-snapshot'
     targetDeploySnapshotRepo: 'ado-generic-deploy-local-release'
     collectBuildInfo: true
@@ -35,13 +35,6 @@ steps:
     javaHomeOption: 'JDKVersion'
 - task: JFrogPublishBuildInfo@1
   inputs:
-    artifactoryConnection: 'hts2v2artifactory'
+    artifactoryConnection: 'testado'
     buildName: '$(Build.DefinitionName)'
     buildNumber: '$(Build.BuildNumber)'
-- task: JFrogBuildScan@1
-  inputs:
-    xrayConnection: 'hts2-v2-xray'
-    buildName: '$(Build.DefinitionName)'
-    buildNumber: '$(Build.BuildNumber)'
-    allowFailBuild: false
-    vuln: false
