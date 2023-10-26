@@ -18,6 +18,12 @@ steps:
     cliVersion: '2.50.2'
     installExtractors: true
     extractorsInstallationRepo: 'extractors'
+- task: JfrogCliV2@1
+  inputs:
+    jfrogPlatformConnection: 'testado'
+    useCustomVersion: true
+    cliVersion: '2.50.2'
+    command: 'jf c add --url=https://hts2.jfrog.io --user=frogtester7 --password=Frogtester@7 --interactive=false hts2'
 - task: JFrogMaven@1
   inputs:
     mavenPomFile: 'pom.xml'
