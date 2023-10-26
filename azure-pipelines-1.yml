@@ -23,7 +23,7 @@ steps:
     jfrogPlatformConnection: 'testado'
     useCustomVersion: true
     cliVersion: '2.50.2'
-    command: 'jf c add --url=https://hts2.jfrog.io --user=frogtester7 --password=Frogtester@7 --interactive=false hts2'
+    command: 'jf c add --url=https://hts2.jfrog.io --user=frogtester7 --password=xxxxxxxxxx --interactive=false hts2'
 - task: JFrogMaven@1
   inputs:
     mavenPomFile: 'pom.xml'
